@@ -47,7 +47,7 @@ def rand_angle_uniform(n, a0=0, a1=pi / 2):
 with sqlite3.connect('bright-star.db') as conn:
     db = conn.cursor()
 
-    # delete old table, if it exists, create a new one
+    # delete old table, if it exists, and create a new one
     try:
         db.execute('DROP TABLE catalog')
         conn.commit()
@@ -82,6 +82,4 @@ with sqlite3.connect('bright-star.db') as conn:
         for star in zip(x, x, y, y, z, z, m, m):
             r = db.execute('INSERT INTO catalog VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?)', star)
 
-        conn.commit()
-
-
+    conn.commit()
