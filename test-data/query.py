@@ -46,12 +46,12 @@ def nearest(ra, dec, rho, mlimit, db):
     return r.fetchall()
 
 eph = ascii.read('encke.eph')
-rho = 1 * u.deg
+rho = 5 * u.arcmin
 mlimit = 14
-nstars = []
 with sqlite3.connect('bright-star.db') as conn:
     db = conn.cursor()
 
+    nstars = []
     for row in eph:
         ra = Angle(row['ra'], unit=u.hourangle)
         dec = Angle(row['dec'], unit=u.deg)
